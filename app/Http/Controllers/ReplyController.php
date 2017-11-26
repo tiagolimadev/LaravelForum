@@ -12,7 +12,7 @@ class ReplyController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -41,10 +41,13 @@ class ReplyController extends Controller
      */
     public function store(Thread $thread)
     {
+        // dd($thread);
         $thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id()
         ]);
+
+        return redirect($thread->path());
     }
 
     /**
